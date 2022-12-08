@@ -10,7 +10,7 @@ services:
             - POSTGRES_HOST=localhost
             - POSTGRES_USER=developer
             - POSTGRES_PASSWORD=developer
-            - POSTGRES_DATABASE=developerdb
+            - POSTGRES_DATABASE=developer
         command: postgres
         restart: always
 
