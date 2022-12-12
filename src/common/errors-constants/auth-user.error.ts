@@ -1,0 +1,1 @@
+export const AUTH_WRONG_DATA = 'Wrong data'
