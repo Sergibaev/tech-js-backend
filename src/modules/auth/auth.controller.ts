@@ -10,23 +10,17 @@ import { AuthUserResponse } from './response/auth-user.response';
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
-    @ApiTags('API')
+    @ApiTags('Auth')
     @ApiResponse({status: 201, type: CreateUserDTO})
     @Post('register')
     register(@Body() dto: CreateUserDTO): Promise<CreateUserDTO> {
         return this.authService.register(dto);
     }
 
-    @ApiTags('API')
+    @ApiTags('Auth')
     @ApiResponse({status: 200, type: AuthUserResponse})
     @Post('login')
     login(@Body() dto: LoginUserDTO): Promise<AuthUserResponse> {
         return this.authService.login(dto);
-    }
-
-    @UseGuards(JwtAuthGuard)
-    @Post('test')
-    test() {
-        return true
     }
 }

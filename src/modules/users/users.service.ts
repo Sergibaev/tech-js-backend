@@ -4,6 +4,7 @@ import { UserModel } from './models/user.model';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
+import { WatchlistModel } from '../watchlist/models/watchlist.model';
 
 @Injectable()
 export class UsersService {
@@ -34,6 +35,10 @@ export class UsersService {
         return this.usersRepository.findOne({
             where: { email },
             attributes: { exclude: ['password'] },
+            include: {
+                model: WatchlistModel,
+                required: false,
+            }
         });
     }
 
@@ -45,7 +50,8 @@ export class UsersService {
         return dto;
     }
 
-    async deleteUser(email: string) {
-        return this.usersRepository.destroy({ where: { email } });
+    async deleteUser(email: string): Promise<boolean> {
+        await this.usersRepository.destroy({ where: { email } })
+        return true
     }
 }
