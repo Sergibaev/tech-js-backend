@@ -6,6 +6,8 @@ import { UsersModule } from '../users/users.module';
 import { UserModel } from '../users/models/user.model';
 import { TokenModule } from '../token/token.module';
 import { AuthModule } from '../auth/auth.module';
+import { WatchlistModel } from '../watchlist/models/watchlist.model';
+import { WatchlistModule } from '../watchlist/watchlist.module';
 
 @Module({
     imports: [
@@ -25,12 +27,13 @@ import { AuthModule } from '../auth/auth.module';
                 database: configService.get('db_name'),
                 synchronize: true,
                 autoLoadModels: true,
-                models: [UserModel]
+                models: [UserModel, WatchlistModel]
             })
         }),
         UsersModule,
         TokenModule,
-        AuthModule
+        AuthModule,
+        WatchlistModule
     ],
 })
 export class AppModule {}
